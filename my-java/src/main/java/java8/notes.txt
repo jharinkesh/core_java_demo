@@ -1,0 +1,161 @@
+===== Java 8 features ======
+
+# Telusko Learning
+https://www.youtube.com/watch?v=QRwG9X9l6xI&list=PLsyeobzWxl7qbvNnJKjYbkTLn2w3eRy1Q
+
+1. Define default method in interface
+2. Functional programming
+3. Lambda expression
+4. Stream api
+
+## Interface in Java 8
+
+1) Default methods
+
+Why default interface came ?
+Just to avoid version incompatiable,
+if we add abstract method in interface
+then all the classes needs to be
+implement that method
+
+example- 
+
+interface I {
+	void add();
+	default void show(){ }
+}
+
+## Diamond problem
+Arises due to multiple inheritance
+
+-- Scenario
+Interface I - method default void show(){}
+Interface J - method default void show(){}
+class C impl I,J will give error
+
+solution:- override show method in class C
+
+-- scenario - third rule - 
+
+class A {  void show(){} }
+
+class C extends A impl I { }
+
+class c object
+obj.show() -> class A method will run
+
+-- scenario
+interface I {
+
+	default boolean equals(Object 0){}
+	// NOT ALLOWED // ERROR
+}
+
+2) static methods
+
+
+## For reach method in java
+
+	List<Integer> ls = Arrays.asList(1, 2, 3);
+	ls.forEach(i -> System.out.println(i));
+
+
+/**
+ * Represents an operation that accepts a single input argument and returns no
+ * result. Unlike most other functional interfaces, {@code Consumer} is expected
+ * to operate via side-effects.
+ */
+@FunctionalInterface
+public interface Consumer<T> {
+ 	public void accept(T t);
+}
+
+Stream<Integer> s = ls.stream();
+	s.forEach(System.out::println);
+	s.forEach(System.out::println); //runtime error on line
+	//stream is already used
+	
+
+## Java 8 date time api
+LocalDate java.time
+	LocalDate d = LocalDate.now();
+	LocalDate d = LocalDate.of(2020, 12, 2);
+	LocalDate d = LocalDate.of(2020, Month.JANUARY, 2);
+
+	LocalTime d = LocalTime.now();
+	LocalTime d = LocalTime.of(01, 23);
+	LocalTime d = LocalTime.now(ZoneId.of("UTC"));
+
+	System.out.println(d);
+
+	for (String s : ZoneId.getAvailableZoneIds()) {
+	    System.out.println(s);
+	}
+
+## Method references
+	ls.forEach(System.out::println);
+
+
+Telusko java stream series
+https://www.youtube.com/watch?v=4e_RsZWdiSc&list=PLsyeobzWxl7otduRddQWYTQezVul0xIX6&index=2
+
+#### Functional programming
+Focus on what to do instead of how to do
+
+#### Streams
+Stream of values
+filter, map - Intermediate
+findFirst, forEach - Terminate
+
+//	System.out.println(ls.stream().map(x -> x * 2).findFirst().get());
+map accepts "Function"
+
+/**
+ * Represents a function that accepts one argument and produces a result.
+ */
+@FunctionalInterface
+public interface Function<T, R> {
+
+    R apply(T t);
+
+System.out.println(ls.stream().reduce((x, y) -> {
+	    System.out.println("in: " + x + ": " + y);
+	    return x + y;
+	}).get());
+System.out.println(ls.stream().reduce(Integer::sum).get());
+
+/**
+ * Represents a function that accepts two arguments and produces a result.
+ */
+@FunctionalInterface
+public interface BiFunction<T, U, R> {
+    //Applies this function to the given arguments.
+    R apply(T t, U u);
+
+
+reduce accepts BiFunction
+
+List<Integer> lis = Arrays.asList(5, 8, 10, 12, 15, 18, 20);
+System.out.println(lis.stream().filter(x -> x % 5 == 0).reduce(0, (a, b) -> a + b));
+	
+filter accepts predicate
+
+/**
+ * Represents a predicate (boolean-valued function) of one argument.
+*/
+@FunctionalInterface
+public interface Predicate<T> {
+
+    //Evaluates this predicate on the given argument.
+    boolean test(T t);	
+	
+
+====================================================
+
+udemy DH
+
+
+
+
+
+
