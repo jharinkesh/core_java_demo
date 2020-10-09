@@ -154,6 +154,69 @@ public interface Predicate<T> {
 
 udemy DH
 
+###### Java 8
+
+Method args <- primitives & object references
+					+ behavior (Java 8)
+					
+prior to java 8, anonymous class
+
+imperative programming
+declarative programming
+
+## Lambdas
+A method by iteself
+anonymous function
+
+functional interface variable (single abstract method)
+
+TreeSet<String>((String x,String y)->(return 0;});
+TreeSet<String>((x,y)->(return 0;});
+TreeSet<String>((x,y)->0);
+
+not braces - > should be an expression
+
+()->{}
+b->(return 0;}
+()->"java"
+()->{return "java";}
+
+NOT VALID ()->{"java";}
+NOT VALID ()->return "java";
+
+## Anonymous class vs Lambdas
+
+AC has associated object
+Lambdas has no associated object
+
+AC can have multiple methods
+
+AC Instantiate on every use
+
+Condition for variables used lambda exp
+1. Local variable inside the method
+   should be effectively final
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
